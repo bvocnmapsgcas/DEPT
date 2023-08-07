@@ -1,0 +1,37 @@
+import java.math.BigInteger;
+import java.util.Scanner;
+
+public class DiffieHellman {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Shared prime number (p) and base (g)
+        System.out.print("Enter the prime number (p): ");
+        BigInteger p = new BigInteger(scanner.nextLine());
+        System.out.print("Enter the base (g): ");
+        BigInteger g = new BigInteger(scanner.nextLine());
+
+        // Alice's private key (a) and public key (A)
+        System.out.print("Enter Alice's private key (a): ");
+        BigInteger a = new BigInteger(scanner.nextLine());
+        BigInteger A = g.modPow(a, p);
+
+        // Bob's private key (b) and public key (B)
+        System.out.print("Enter Bob's private key (b): ");
+        BigInteger b = new BigInteger(scanner.nextLine());
+        BigInteger B = g.modPow(b, p);
+
+        // Calculate the shared secret key (s) for Alice and Bob
+        BigInteger sAlice = B.modPow(a, p);
+        BigInteger sBob = A.modPow(b, p);
+
+        // Output the shared secret key
+        System.out.println("Shared secret key for Alice: " + sAlice);
+        System.out.println("Shared secret key for Bob: " + sBob);
+
+        scanner.close();
+    }
+}
+
+
+
